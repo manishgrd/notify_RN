@@ -33,12 +33,12 @@ export default class Home extends Component {
         return response.json();
       })
       .then((result)=> {
-        authToken = result.auth_token
+        authToken = result.auth_token;
         AsyncStorage.setItem('HASURA_AUTH_TOKEN', authToken);
     
         if(authToken!=null)
         {  this.sendSessionID(result.auth_token,result.username);
-            return Actions.main();
+            
           }
         else
             alert("Invalid credentials--Try Again !!");
@@ -67,9 +67,11 @@ export default class Home extends Component {
          fetch(urlq, requestOptions)
          .then((response)=> {
            console.log(response);
-           return response.json();
+           return 1;
+           console.log("Session ID update Successful");
          })
          .then((result)=> {
+          return Actions.main();
            //console.log("Token Update",result);
          })
          .catch((error)=> {

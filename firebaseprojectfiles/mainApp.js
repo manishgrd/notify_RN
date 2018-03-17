@@ -13,16 +13,27 @@ let requestOptions = {
 
 export default class Main extends Component {
 
-    state = {userID: "", ntitle:"Recent Notifications : ",  nmessage: "No Recent Notifications !!", title:"",  message: "", fcm_tkn:"", senderID: "", Data:[]};
+    state = {userID: "", ntitle:"Recent Notifications : ",  nmessage: "No Recent Notifications !!", title:"",  message: "", senderID: "", Data:[]};
 
     getUserInfo() {
+
+     url = "https://auth.astigmatic44.hasura-app.io/v1/user/info";
+    authToken = AsyncStorage.getItem('HASURA_AUTH_TOKEN');
+    headers = { "Authorization" : "Bearer " + authToken }
+     requestOptions = {
+                        "method": "GET",
+                       "headers": headers,};
+
         fetch(url,requestOptions)
         .then((response) => {
           return response.json();
         })
         .then((result) => { 
+          if(result.username) {
+         alert("Logged In Successfully to Notify!");  
           this.generateToken(result.username);
-          this.setState({senderID: result.username});
+          this.setState({senderID: result.username});}
+          else  return Actions.HomeScreen();
          })
         .catch((error) => {
         console.log('User info retrieval:' + error);
@@ -54,15 +65,11 @@ fetch(url, requestOptions)
 })
 .catch(function(error) {
 	console.log('Request Failed  :' + error);
-});
-
-        }
-       
+});}
 
         componentDidMount() {
           this.getUserInfo();
-          this.setUsers();
-          alert("Logged In Successfully to Notify!");       
+          this.setUsers();     
         }
 
         generateToken = (user) =>{
@@ -70,13 +77,10 @@ fetch(url, requestOptions)
             msg.requestPermissions();         
               msg.getToken()   //get user device token
               .then((token) => {
-                console.log(token)
-              this.setState({fcm_tkn: token});
               this.sendToken(token,user);
               })
             .catch((error) => {
              console.log('Token Updation:' + error);
-             this.setState({fcm_tkn: error});
             });
             msg.onMessage(payload => {
                 console.log(payload);
@@ -96,7 +100,7 @@ fetch(url, requestOptions)
                     "$set": { "Device_Id": currentToken }}};
             
                   requestOptionsQ.body = JSON.stringify(body);
-                 console.log(urq, requestOptionsQ);
+    
                   fetch(urq, requestOptionsQ)
                   .then(function(response) {
                     return response.json();
@@ -162,7 +166,7 @@ fetch(url, requestOptions)
                            return response.json();
                          })
                          .then((result)=> {
-                          console.log("Session Update",result);
+                          console.log("Session Deleted",result);
                          })
                          .catch((error)=> {
                            console.log('Request Failed:' + error);

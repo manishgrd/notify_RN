@@ -17,19 +17,17 @@ export default class LoginScreen extends Component {
 var url = "https://api.astigmatic44.hasura-app.io/register";
 var requestOptions = {
     "method": "POST",
-    "Headers": { "Content-Type": "application/json" }};
-var body = {
-    "F_Name": this.state.firstname,
-    "L_Name": this.state.lastname,
-    "User_Name": this.state.username,
-    "Pass": this.state.password,
-    "Email_id": this.state.email,
-    "Phone_No": this.state.mobile
-  }
+    "Headers": { "Content-Type": "x-www-form-urlencoded" }};
+let body = {  "F_Name": this.state.firstname,
+                  "L_Name": this.state.lastname,
+               "User_Name": this.state.username,
+                    "Pass": this.state.password,
+                "Email_id": this.state.email,
+                "Phone_No": this.state.mobile };
   
 requestOptions.body = JSON.stringify(body);
-
-fetch(url, requestOptions)
+console.log(url,requestOptions);
+fetch(url,requestOptions)
 .then(function(response) {
   alert(response.message);
 	return response.json();

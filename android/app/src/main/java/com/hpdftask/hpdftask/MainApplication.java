@@ -3,14 +3,14 @@ package com.hpdftask.hpdftask;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import in.sriraman.sharedpreferences.RNSharedPreferencesReactPackage;
+import io.invertase.firebase.RNFirebasePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import in.sriraman.sharedpreferences.RNSharedPreferencesReactPackage;
 
-import io.invertase.firebase.RNFirebasePackage;
-// optional packages - add/remove as appropriate
 //import io.invertase.firebase.admob.RNFirebaseAdMobPackage; //Firebase AdMob
 //import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage; // Firebase Analytics
 //import io.invertase.firebase.auth.RNFirebaseAuthPackage; // Firebase Auth
@@ -47,14 +47,14 @@ public class MainApplication extends Application implements ReactApplication {
         //new RNFirebaseCrashPackage(),
         //new RNFirebaseDatabasePackage(),
         //new RNFirebaseFirestorePackage(),
-           new RNFirebaseMessagingPackage(),
+        new RNFirebaseMessagingPackage(),
         //new RNFirebasePerformancePackage(),
         //new RNFirebaseStoragePackage(),
         //new RNFirebaseCrashlyticsPackage(),
         new RNSharedPreferencesReactPackage()
       );
     }
-    
+
     @Override
     protected String getJSMainModuleName() {
       return "index";
