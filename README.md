@@ -15,7 +15,6 @@ If you're only developing for one platform you can ignore the steps below that a
 - 1.1) `git clone https://github.com/manishgrd/notify_RN.git`
 - 1.2) `cd notify_RN` - cd into your newly created project directory.
 - 1.3) Install NPM packages with your package manager of choice - i.e run `yarn`
-- 1.4) Run react-native link
 
 #### 2) Add `Google Services` files (plist & JSON)
 [Android]** Follow the `manually add firebase` to your app instructions [here](https://firebase.google.com/docs/android/setup#manually_add_firebase) to generate your `google-services.json` file if you haven't done so already - use the package name generated previously as your `Android package name`.
