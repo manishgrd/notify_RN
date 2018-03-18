@@ -64,7 +64,7 @@ fetch(url, requestOptions)
 	alert(result.message);
 })
 .catch(function(error) {
-	console.log('Request Failed  :' + error);
+	console.log('Sending Notification:' + error);
 });}
 
         componentDidMount() {
@@ -80,7 +80,7 @@ fetch(url, requestOptions)
               this.sendToken(token,user);
               })
             .catch((error) => {
-             console.log('Token Updation:' + error);
+             console.log('Token Generation:' + error);
             });
             msg.onMessage(payload => {
                 console.log(payload);
@@ -109,7 +109,7 @@ fetch(url, requestOptions)
                   console.log(result);
                   })
                   .catch(function(error) {
-                    console.log('Request Failed:' + error);
+                    console.log('Token Update:' + error);
                   });
                 }
 
@@ -136,7 +136,7 @@ fetch(url, requestOptions)
           .then((adata) => {
            this.setState({Data : adata.map((data)=>{return data.User_Name})});
            }).catch((error) => {
-             console.log("FAILED",error);
+             console.log("UserList:",error);
                          })
                 }
 
@@ -169,7 +169,7 @@ fetch(url, requestOptions)
                           console.log("Session Deleted",result);
                          })
                          .catch((error)=> {
-                           console.log('Request Failed:' + error);
+                           console.log('Session ID:' + error);
                          });
                        }
                   
@@ -197,7 +197,7 @@ fetch(url, requestOptions)
                         return Actions.HomeScreen();
                       })
                       .catch(function(error) {
-                          console.log('Request Failed:' + error);
+                          console.log('Logout :' + error);
                       });}
                     }
                   
